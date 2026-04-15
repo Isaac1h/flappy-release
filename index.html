@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Unity WebGL Player | Flappy Bird - Isaac Hassani</title>
+    <link rel="shortcut icon" href="TemplateData/favicon.ico">
+    <link rel="stylesheet" href="TemplateData/style.css">
+    <script src="TemplateData/UnityProgress.js"></script>
+    <script src="Build/UnityLoader.js"></script>
+    <script>
+      var unityInstance = UnityLoader.instantiate("unityContainer", "Build/Build_WebGL.json", {onProgress: UnityProgress});
+    </script>
+    
+    <style>
+      /* --- Fond d'ambiance Flappy Bird --- */
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: #71C5CF; /* Couleur du ciel Flappy */
+        
+        /* Image de fond style "tuyaux" ou "ciel" répétée */
+        /* Tu peux changer l'URL par une image de ton choix si tu veux */
+        background-image: url('https://user-images.githubusercontent.com/1836749/119951632-44161a80-bf8f-11eb-9886-f6c6d2673295.png'); 
+        background-repeat: repeat;
+        background-size: auto; /* Garde la taille d'origine de l'image pour la répétition */
+        
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        overflow: hidden; /* Empêche les barres de défilement du site */
+        
+        color: #fff;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      /* --- Le Container du Jeu (Le plus grand possible) --- */
+      .webgl-content {
+        /* Occupe 100% de la largeur/hauteur moins une petite marge pour respirer */
+        width: 100vw;
+        height: 100vh;
+        
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+      }
+
+      /* --- Le Canvas de Unity --- */
+      #unityContainer {
+        /* On retire les dimensions fixes style="" de ton HTML d'origine */
+        /* Et on le force à prendre la plus grande place possible tout en gardant son ratio */
+        width: auto !important; 
+        height: auto !important;
+        max-width: 100% !important;
+        max-height: 100% !important;
+        
+        /* Important : Garder le ratio original (ex: 16:10) */
+        aspect-ratio: 16 / 10; 
+        
+        box-shadow: 0px 0px 50px rgba(0,0,0,0.8); /* Grosse ombre pour le relief */
+        background: #000;
+        border: 4px solid #fff; /* Petit contour blanc style arcade */
+        border-radius: 4px;
+      }
+
+      /* --- Le Footer (En surimpression discrète) --- */
+      .footer {
+        position: absolute;
+        bottom: 10px;
+        left: 20px;
+        right: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: rgba(0,0,0,0.6); /* Fond transparent pour la lecture */
+        padding: 8px 15px;
+        border-radius: 8px;
+        font-size: 0.9em;
+        pointer-events: none; /* Ne bloque pas le clic sur le jeu */
+      }
+      
+      .fullscreen {
+        cursor: pointer;
+        pointer-events: auto; /* Réactive le clic pour le plein écran */
+        background: none;
+        border: 1px solid white;
+        color: white;
+        padding: 4px 8px;
+        border-radius: 4px;
+        transition: 0.2s;
+      }
+      .fullscreen:hover { background: #fff; color: #333; }
+
+      /* --- Tes crédits demandés --- */
+      .credits {
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        font-size: 0.8em;
+        color: rgba(255,255,255,0.7);
+        text-shadow: 1px 1px 2px #000;
+        background-color: rgba(0,0,0,0.4);
+        padding: 4px 8px;
+        border-radius: 4px;
+        pointer-events: none;
+      }
+    </style>
+  </head>
+  
+  <body>
+    <div class="credits">
+      Isaac Hassani - Institut Limayrac
+    </div>
+
+    <div class="webgl-content">
+      <div id="unityContainer"></div>
+      
+      <div class="footer">
+        <div class="title">Flappy Bird</div>
+        <button class="fullscreen" onclick="unityInstance.SetFullscreen(1)" title="Plein écran">Plein Écran (Fullscreen)</button>
+      </div>
+    </div>
+  </body>
+</html>
