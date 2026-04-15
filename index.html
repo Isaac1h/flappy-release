@@ -5,7 +5,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Flappy Bird | Isaac Hassani</title>
     
-    <link rel="icon" type="image/png" href="limayrac.png">
+    <link rel="icon" type="image/png" href="limayrac.png?v=1">
+    <link rel="apple-touch-icon" href="limayrac.png?v=1">
     
     <script src="TemplateData/UnityProgress.js"></script>
     <script src="Build/UnityLoader.js"></script>
@@ -18,6 +19,7 @@
         margin: 0;
         padding: 0;
         background-color: #71C5CF;
+        /* Image de fond Flappy Bird répétée */
         background-image: url('https://user-images.githubusercontent.com/1836749/119951632-44161a80-bf8f-11eb-9886-f6c6d2673295.png'); 
         background-repeat: repeat;
         display: flex;
@@ -29,15 +31,18 @@
         font-family: 'Segoe UI', sans-serif;
       }
 
+      /* Container du jeu : Grand et centré */
       #unityContainer {
         width: 100% !important;
         height: 100% !important;
         max-width: 100vw !important;
         max-height: 100vh !important;
-        aspect-ratio: 16 / 10;
+        aspect-ratio: 16 / 10; 
         box-shadow: 0px 0px 100px rgba(0,0,0,0.5);
+        border: none;
       }
 
+      /* Bulle de crédits stylisée en haut à gauche */
       .credits {
         position: absolute;
         top: 15px;
@@ -50,9 +55,10 @@
         font-size: 14px;
         z-index: 10;
         border: 1px solid rgba(255,255,255,0.2);
-        pointer-events: none;
+        pointer-events: none; /* Ne gêne pas le clic si le jeu est dessous */
       }
 
+      /* Bouton plein écran ergonomique */
       .btn-fullscreen {
         position: absolute;
         bottom: 20px;
@@ -60,10 +66,10 @@
         background: rgba(255, 255, 255, 0.2);
         border: 2px solid white;
         color: white;
-        padding: 12px 20px;
+        padding: 12px 25px;
         border-radius: 50px;
         cursor: pointer;
-        transition: 0.3s;
+        transition: all 0.3s ease;
         z-index: 10;
         font-weight: bold;
         backdrop-filter: blur(10px);
