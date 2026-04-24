@@ -19,7 +19,6 @@
         margin: 0;
         padding: 0;
         background-color: #71C5CF;
-        /* Image de fond Flappy Bird répétée */
         background-image: url('https://user-images.githubusercontent.com/1836749/119951632-44161a80-bf8f-11eb-9886-f6c6d2673295.png'); 
         background-repeat: repeat;
         display: flex;
@@ -31,7 +30,6 @@
         font-family: 'Segoe UI', sans-serif;
       }
 
-      /* Container du jeu : Grand et centré */
       #unityContainer {
         width: 100% !important;
         height: 100% !important;
@@ -42,7 +40,6 @@
         border: none;
       }
 
-      /* Bulle de crédits stylisée en haut à gauche */
       .credits {
         position: absolute;
         top: 15px;
@@ -55,10 +52,9 @@
         font-size: 14px;
         z-index: 10;
         border: 1px solid rgba(255,255,255,0.2);
-        pointer-events: none; /* Ne gêne pas le clic si le jeu est dessous */
+        pointer-events: none;
       }
 
-      /* Bouton plein écran ergonomique */
       .btn-fullscreen {
         position: absolute;
         bottom: 20px;
@@ -86,6 +82,10 @@
   </head>
   
   <body>
+    <audio id="bg-music" loop>
+      <source src="goofy-Ahh-trap.mp3" type="audio/mpeg">
+    </audio>
+
     <div class="credits">
       <strong>Isaac Hassani</strong> - Institut Limayrac
     </div>
@@ -93,7 +93,18 @@
     <div id="unityContainer"></div>
 
     <button class="btn-fullscreen" onclick="unityInstance.SetFullscreen(1)">
-       ⛶ PLEIN ÉCRAN
+        ⛶ PLEIN ÉCRAN
     </button>
+
+    <script>
+      window.addEventListener('click', function() {
+          var audio = document.getElementById("bg-music");
+          if(audio.paused) {
+              audio.play().catch(function(error) {
+                  console.log("Lecture auto bloquée par le navigateur :", error);
+              });
+          }
+      }, { once: true }); 
+    </script>
   </body>
 </html>
